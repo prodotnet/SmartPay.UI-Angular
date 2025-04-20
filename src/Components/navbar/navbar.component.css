@@ -1,0 +1,53 @@
+.navbar {
+    background-color: #333;
+	height:100px;
+}
+        
+.navbar-brand {
+    color: #00C8FF;
+    font-size: 20px;
+    font-weight: bold;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+       
+.nav-link {
+    color:  #228B22;
+    text-decoration: none;
+ }
+  
+ 
+.nav-link:hover {
+    color: OrangeRed;
+}
+
+
+.nav-link.active {
+    font-weight: bold;
+    color: OrangeRed;
+    border-bottom: 2px solid OrangeRed;
+}
+.imgContainer{
+	width:80px;
+	height:80px;	
+	margin:0;
+
+	
+	
+	
+}
+
+.btn-primary {
+    background-color: OrangeRed;
+    border: none;
+}
+
+.btn-primary:hover {
+     background-color: #228B22;  
+}
+
+
+  
+ 
