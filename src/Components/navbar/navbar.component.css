@@ -21,13 +21,14 @@
  
 .nav-link:hover {
     color: OrangeRed;
+    border-bottom: 2px solid OrangeRed;
 }
 
 
 .nav-link.active {
     font-weight: bold;
     color: OrangeRed;
-    border-bottom: 2px solid OrangeRed;
+   
 }
 .imgContainer{
 	width:80px;

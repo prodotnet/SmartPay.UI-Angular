@@ -1,0 +1,26 @@
+.faq-section {
+    max-width: 900px;
+    margin: auto;
+}
+.faq-header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+.accordion-item {
+    background-color: #2b2b2b;
+    border: none;
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.accordion-button {
+    background-color: #333;
+    color: OrangeRed;
+    font-weight: bold;
+}
+.accordion-button:focus {
+    box-shadow: none;
+}
+.accordion-body {
+    background-color: #2b2b2b;
+    color: #ccc;
+}

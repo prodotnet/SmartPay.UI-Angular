@@ -1,0 +1,59 @@
+/* About Us Section Styling */
+#about {
+    padding-top: 40px;
+    padding-bottom: 40px;
+}
+
+#about .intro h2 {
+    font-size: 32px;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: OrangeRed;
+}
+
+#about .intro p {
+    font-size: 18px;
+    color: #ccc;
+    max-width: 900px;
+    margin: 0 auto 40px auto;
+}
+
+#about .feature {
+    background-color: #2b2b2b;
+    padding: 25px;
+    border-radius: 12px;
+    text-align: center;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+    flex: 1 1 30%;
+    transition: transform 0.3s ease;
+}
+
+#about .feature:hover {
+    transform: translateY(-5px);
+}
+
+#about .feature i {
+    margin-bottom: 15px;
+}
+
+#about .feature h3 {
+    font-size: 20px;
+    color: OrangeRed;
+    margin-bottom: 10px;
+}
+
+#about .feature p {
+    color: #bbb;
+    font-size: 16px;
+}
+
+#about .cta h4 {
+    margin-top: 40px;
+    font-size: 24px;
+    color: OrangeRed;
+}
+
+#about .cta p {
+    font-size: 16px;
+    color: #aaa;
+}

@@ -1,0 +1,31 @@
+
+   
+    .feature-section {
+        max-width: 1100px;
+        margin: auto;
+        padding: 40px 20px;
+      }
+      .feature-card {
+        background-color: #2b2b2b;
+        border: none;
+        border-radius: 12px;
+        padding: 25px;
+        margin-bottom: 30px;
+        box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+      }
+      .feature-card i {
+        color: OrangeRed;
+        font-size: 2rem;
+        margin-bottom: 15px;
+      }
+      .feature-card h4 {
+        color: OrangeRed;
+      }
+      .feature-card p {
+        color: #ccc;
+      }
+      .section-title {
+        text-align: center;
+        margin-bottom: 50px;
+      }
+    
