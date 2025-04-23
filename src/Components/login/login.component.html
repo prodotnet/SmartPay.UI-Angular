@@ -8,12 +8,17 @@
                         <img src="../assets/logo.jpeg" alt="Login" style="max-width: 100%; height: 600;">
                     </div>
                     <div class="col-md-6">
-                        <form  autocomplete="off" style="width: 100%;">
+                        <form [formGroup]="loginForm" (ngSubmit)="Login()"   autocomplete="off" style="width: 100%;">
                             <!-- Email input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="email">Email address:</label>
+                                
                                 <input formControlName="email" type="email" id="email" class="form-control"
-                                     />
+                                    [class.is.invalid]="submitted && loginForm.get('email')?.errors" />
+                                <span class="text-danger"
+                                    *ngIf="submitted && loginForm.get('email')?.hasError('required')">
+                                    Please provide your email. 
+                                </span>
                                
 
 
@@ -22,9 +27,13 @@
                             <!-- Password input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="password">Password:</label>
-                                <input formControlName="password" id="password" type="password" class="form-control">
-                                  
                                 
+                                <input formControlName="password" id="password" type="password" class="form-control"
+                                    [class.is.invalid]="submitted && loginForm.get('password')?.errors" />
+                                <span class="text-danger"
+                                    *ngIf="submitted && loginForm.get('password')?.hasError('required')">
+                                    Please provide your password. 
+                                </span>
 
                             </div>
 
@@ -38,24 +47,37 @@
                                     </div>
                                 </div>
                                 <div class="col">
-                                    <a routerLink="/forgot_passsword" class="float-end" style="color:orangered">Forgot password?</a>
+                                    <a routerLink="/forgot_passsword" class="float-end" style="color:green">Forgot password?</a>
                                 </div>
                             </div>
 
                     
+                                      <!--Backend validations-->
+                            <div class="form-floating" *ngIf="errorMessages.length>0">
 
-              
+                             <app-validations [errorMessage]="errorMessages"></app-validations>
+                           </div>
+
+                            <!-- Loading Spinner -->
+                            <div *ngIf="isLoading" class="d-flex justify-content-center my-4">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
 
 
                             <!-- Sign in button -->
                             <div class="mb">
-                                <button type="submit" class="btn btn-primary">Submit</button>
+                                <button type="submit" class="btn btn-primary w-100">Submit</button>
 
                             </div>
 
+                             
+
+
                             <!-- Register link -->
                             <p class="text-center mt-5 ">Not a member? <a class=" text-decoration-none"
-                                    routerLink="/register" style="color:orangered">Register</a></p>
+                                    routerLink="/register" style="color:green">Register</a></p>
 
                         </form>
                     </div>
