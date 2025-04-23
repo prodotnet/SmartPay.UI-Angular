@@ -1,90 +1,130 @@
+<!-- Container for the whole registration section -->
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-lg-15">
             <div class="border rounded-2 p-4">
-                <h2 class="text-center mb-4 "style="color:green">Create an account</h2>
-                <!-- Modal -->
-                <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel"
-                    aria-hidden="true">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header ">
-                                <i class="fa-solid fa-circle-check"></i>
-                                
-                            </div>
-     
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
-                                   >Login</button>
 
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Page title -->
+                <h2 class="text-center mb-4" style="color:green">Create an account</h2>
+
+                <!-- Bootstrap Modal shown after successful registration -->
+                 <!-- Modal -->
+                 <div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel"
+                 aria-hidden="true">
+                 <div class="modal-dialog">
+                     <div class="modal-content">
+                         <div class="modal-header " [ngClass]="{'bg-success text-white': isRegistered, 'bg-danger text-white': !isRegistered}">
+                             <i class="fa-solid fa-circle-check"></i>
+                             <h5 class="modal-title" id="registrationModalLabel">{{ isRegistered ? 'Registration Successful' :
+                                 'Error' }}</h5>
+                         </div>
+                         <div class="modal-body">
+                             <ng-container *ngIf="isRegistered; else registrationError">
+                                 You have successfully registered. You can now Login
+                             </ng-container>
+                             <ng-template #registrationError>
+                                 Registration failed. Please try again.
+                             </ng-template>
+                             <ul *ngIf="errorMessages.length > 0">
+                                 <li *ngFor="let message of errorMessages" class="text-danger">{{ message }}</li>
+                             </ul>
+                         </div>
+                         <div class="modal-footer">
+                             <button type="button" class="btn btn-primary w-100" data-bs-dismiss="modal"
+                                 (click)="navigateToLogin()">Login</button>
+
+                         </div>
+                     </div>
+                 </div>
+             </div>
 
 
-                <!--The main Registration form-->
+
+                <!-- Main registration form layout -->
                 <div class="row">
+                    <!-- Left side: image/logo -->
                     <div class="col-md-6 d-flex justify-content-center align-items-center">
                         <img src="../assets/logo.jpeg" alt="Login" style="max-width: 100%; height: 400px;">
                     </div>
+
+                    <!-- Right side: registration form -->
                     <div class="col-md-6">
-                        <form  autocomplete="off"
-                            style="width: 100%;">
-
-
-
-                            <!-- Name input -->
+                        <form [formGroup]="registrationForm" (ngSubmit)="Registration()" autocomplete="off" style="width: 100%;">
+                            
+                            <!-- First Name Input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="firstName">First Name:</label>
-                                <input formControlName="firstName" id="firstName" type="text" class="form-control"
-                                    />
-
-                             
+                                <input formControlName="firstName" id="firstName" type="text" class="form-control"/>
+                                <span class="text-danger" *ngIf="submitted && registrationForm.get('firstName')?.hasError('required')">
+                                    Please provide your first name.
+                                </span>
                             </div>
 
-                            <!-- Surname input -->
+                            <!-- Last Name Input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="lastName">Last Name:</label>
-                                <input formControlName="lastName" id="lastName" type="text" class="form-control"
-                                  />
-                                
+                                <input formControlName="lastName" id="lastName" type="text" class="form-control"/>
+                                <span class="text-danger" *ngIf="submitted && registrationForm.get('lastName')?.hasError('required')">
+                                    Please provide your last name.
+                                </span>
                             </div>
 
-
-                            <!-- Email input -->
+                            <!-- Email Input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="email">Email address:</label>
                                 <input formControlName="email" type="email" id="email" class="form-control"
-                                     />
-                           </div>
+                                    [class.is.invalid]="submitted && registrationForm.get('email')?.errors" />
+                                <span class="text-danger" *ngIf="submitted && registrationForm.get('email')?.hasError('required')">
+                                    Please provide your email.
+                                </span>
+                                <span class="text-danger" *ngIf="submitted && registrationForm.get('email')?.hasError('pattern')">
+                                    Please enter a valid email.
+                                </span>
+                            </div>
 
-                            <!-- Password input -->
+                            <!-- Password Input -->
                             <div class="form-outline mb-4">
                                 <label class="form-label" for="password">Password:</label>
-                                <input formControlName="password" id="password" type="password" class="form-control">   
+                                <input formControlName="password" id="password" type="password" class="form-control"
+                                    [class.is.invalid]="submitted && registrationForm.get('password')?.errors" />
+                                <span class="text-danger" *ngIf="submitted && registrationForm.get('password')?.hasError('required')">
+                                    Please provide your password.
+                                </span>
+                                <span class="text-danger"
+                                    *ngIf="submitted && (registrationForm.get('password')?.hasError('minlength') || registrationForm.get('password')?.hasError('maxlength'))">
+                                    The password must be at least 6 characters and at most 12 characters long.
+                                </span>
                             </div>
 
-                            <!-- submit button -->
+                            <!-- Spinner shown while waiting for response -->
+                            <div *ngIf="isLoading" class="d-flex justify-content-center my-4">
+                                <div class="spinner-border text-primary" role="status">
+                                    <span class="visually-hidden">Loading...</span>
+                                </div>
+                            </div>
+
+                            <!-- Display backend validation errors using a child component -->
+                            <div class="form-floating" *ngIf="errorMessages.length > 0">
+                                <app-validations [errorMessage]="errorMessages"></app-validations>
+                            </div>
+
+                            <!-- Submit Button and Login Link -->
                             <div class="row mb-4">
-                                <div class="col d-flex justify-content-start align-items-center">
+                                <div class="mb">
                                     <div class="form-check">
-                                        <button type="submit" class="btn btn-primary btn-block" >Submit</button>
+                                        <button type="submit" class="btn btn-primary w-100" [disabled]="isButtonDisabled">Submit</button>
                                     </div>
                                 </div>
-                                <div class="col">
-                                    <p class="text-center ">Already have an account? <a
-                                            class=" text-decoration-none"  style="color:orangered"routerLink="/login">Login</a>
-                                    </p>
-                                </div>
+                                
+                                <p class="text-center mt-5" >
+                                    Already have an account?
+                                    <a class=" text-decoration-none" style="color:green" routerLink="/login" >Login</a>
+                                </p>
                             </div>
 
-
-
                         </form>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
+                 </div> <!-- End of the main registration form -->
+            </div> <!-- End of card border -->
+        </div> <!-- End of column -->
+    </div> <!-- End of row -->
+</div> <!-- End of container -->

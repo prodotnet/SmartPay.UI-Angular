@@ -1,0 +1,12 @@
+.dashboard-layout {
+    display: flex;
+    height: 100vh;
+    background: #222;
+  
+    .dashboard-main {
+      flex: 1;
+      overflow-y: auto;
+      background: #222;
+      color: white;
+    }
+  }
