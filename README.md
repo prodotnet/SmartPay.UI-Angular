@@ -101,11 +101,11 @@ In high-crime environments, users may be forced to open their mobile wallets und
 
 ## 🚀 Project Status
 
-✅ Backend APIs complete 
-✅ Angular 19 UI in progress 
-🔜Voice recognition model integrated   
-🔜 Responsive mobile UI testing  
-🔜 Demo video & live deployment
+- ✅ Backend APIs completed and secured (ASP.NET Core)
+- ✅ Angular 19 UI development underway (modular, responsive components)
+- 🔄 Voice recognition model integration in progress (using Vosk / TensorFlow.js)
+- 🔜 Mobile responsiveness testing and optimization (Bootstrap 5)
+- 🔜 Demo video recording and live deployment planned
 
 ---
 
