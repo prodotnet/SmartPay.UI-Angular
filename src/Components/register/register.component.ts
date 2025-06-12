@@ -17,6 +17,7 @@ declare var bootstrap: any;
 
 
 
+
 // Class that defines the behavior of the RegisterComponent
 export class RegisterComponent implements OnInit {
 
@@ -27,8 +28,6 @@ export class RegisterComponent implements OnInit {
   submitted = false;
   isRegistered = false;
   isButtonDisabled = false;
-
-
   isRegistrationFailed = false;
   isLoading = false;
 

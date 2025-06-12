@@ -4,8 +4,8 @@ export const environment = {
     // Indicates that the app is running in production mode
     production: true,
 
-    // Base URL of the backend API (you should replace the empty string with your live API URL)
+  // Add any other production-specific variables here, if needed
     appUrl: '',
 
-    // Add any other production-specific variables here, if needed
+    
 };

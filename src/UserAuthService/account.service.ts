@@ -79,7 +79,7 @@ export class AccountService {
    * Registration method
    * Sends the user registration model to backend
    */
-  register(model: [UserRegistration]) {
+  register(model: UserRegistration) {
     return this.http.post(`${this.API_URL}/Register`, model);
   }
 
