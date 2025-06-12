@@ -1,132 +1,121 @@
-SmartPay: Voice-Activated Safe Mode (VASM)
-Project Module Document
-Author: S’phesihle Ngidi
-Date: April 2025
+# 💳 SmartPay: Voice-Activated Safe Mode (VASM)
 
-Overview
-The Voice-Activated Safe Mode (VASM) is a security-first feature in SmartPay — a digital wallet designed to protect users in high-risk scenarios such as armed robberies or coercion. It uses AI-driven voice recognition or a panic phrase to trigger a hidden mode, protecting the user’s real funds and preventing transaction access under duress.
+> A next-gen, voice-secured digital wallet built to protect users in high-risk scenarios — with real-time AI voice recognition and a duress-safe mode.
 
-Problem Statement
-In high-crime environments, users may be forced to open their mobile wallets under threat. If a criminal sees a large balance or is able to transfer funds, the user’s safety is compromised. There is currently no mainstream digital wallet that allows users to instantly disguise or lock their accounts under pressure.
+---
 
-Proposed Solution
-SmartPay introduces a Voice-Activated Safe Mode, allowing the user to:
+## 📌 Project Overview
 
-Speak a predefined panic phrase or use voice tone detection.
+SmartPay is a full-featured **digital wallet** application designed for both convenience and safety. It introduces a game-changing innovation: **Voice-Activated Safe Mode (VASM)** — which protects users under threat by instantly hiding sensitive financial data, locking transactions, and optionally sending silent alerts.
 
-Instantly switch the app interface to show a fake balance (e.g., R0.00).
+This project demonstrates a deep understanding of secure financial systems, modern front-end architecture, and AI-powered user safety.
 
-Disable all fund transfers or withdrawals.
+---
 
-Optionally send a silent alert to trusted contacts or admin.
+## 🚨 Problem It Solves
 
-Resume normal access only after secure re-authentication.
+In high-crime environments, users may be forced to open their mobile wallets under threat. If a criminal sees the real balance or is able to initiate transfers, the user’s safety is at risk.
 
-Feature Flow
-Normal Login Flow:
+> Most digital wallets don't offer any safety fallback under coercion — **SmartPay does.**
 
-User logs in with regular PIN or biometric.
+---
 
-App fetches real wallet data and displays it.
+## ✅ Key Features
 
-Safe Mode Triggered Flow:
+- 🎙️ **Voice-activated panic mode** with offline voice recognition
+- 🔒 **Fake balance mode** triggered under duress
+- 🛑 **Transaction lock** during panic mode
+- 📩 **Silent emergency alerts** to trusted contacts
+- 🔐 **Dual PIN system** (primary for login, secondary for exiting safe mode)
+- 💰 **Secure wallet management** (add, send, receive funds)
+- 📄 **Transaction history** with filters and sorting
+- 👥 **User profile and KYC integration**
+- 🔐 **PIN and biometric authentication**
+- 🧾 **Bill payments** (e.g., airtime, utilities)
+- 🌐 **Multi-currency support**
+- 📲 **Responsive UI** for mobile and desktop use
 
-User speaks a panic phrase (e.g., “Please don’t hurt me”).
+---
 
-App detects the phrase (voice recognition module).
+## 📱 UI Flow (Angular Frontend)
 
-App activates Safe Mode:
+### 🔐 Normal Login
+1. User logs in via PIN or biometric
+2. Dashboard loads:
+   - Real wallet balance
+   - Quick actions: Send, Receive, Pay Bills
+   - Recent transaction list
+   - Settings and profile access
 
-Shows dummy balance.
+### ⚠️ Panic Mode Trigger
+1. User says a predefined panic phrase (e.g., “Please don’t hurt me”)
+2. Voice recognition module detects the phrase
+3. App enters **Safe Mode**:
+   - Fake balance is displayed (e.g., R0.00)
+   - All transfers and payments are disabled
+   - UI mimics normal functionality (decoy mode)
+   - Optional silent alert is sent to a predefined contact or admin
+4. To exit Safe Mode:
+   - Logout required
+   - Re-login with **secondary secure PIN**
 
-Transaction options are hidden or disabled.
+---
 
-Triggers optional silent alert.
+## 🧠 Tech Stack
 
-To exit Safe Mode, user must log out and log in again with a secondary secure PIN.
+| Layer         | Technology Stack |
+|---------------|------------------|
+| Frontend      | Angular 19, TypeScript, CSS, Bootstrap 5 |
+| Voice Capture | Web Audio API, Microphone Access |
+| Voice AI      | Vosk (Offline), TensorFlow.js |
+| Backend       | ASP.NET Core Web API (C#) |
+| Authentication|  PIN + JWT |
+| Database      | SQL Server  |
 
-Tech Stack Involved
+---
 
-Layer	Tech Used
-Frontend (UI)	Angular / .NET MAUI
-Voice Capture	Microphone Access + Web Audio API / MAUI plugin
-Voice AI	Vosk (Offline), TensorFlow.js, or ML.NET
-Backend	ASP.NET Core Web API (C#)
-Database	SQL Server (User table with panic_phrase, safe_mode flag)
-Database Schema Changes
-Users Table:
+## 🧠 AI Integration
 
-sql
-Copy
-Edit
-ALTER TABLE Users
-ADD PanicPhrase NVARCHAR(100),
-    SafeModeEnabled BIT DEFAULT 0,
-    IsInSafeMode BIT DEFAULT 0;
-Safe Mode Log Table:
+- Offline voice recognition using **Vosk**
+- Fast local processing for panic phrase detection
+- Designed to work even in **low-network or offline** conditions
+- Future scope: vocal emotion detection for smarter triggers
 
-sql
-Copy
-Edit
-CREATE TABLE SafeModeLogs (
-    Id INT PRIMARY KEY IDENTITY,
-    UserId INT,
-    TriggerTime DATETIME,
-    TriggerType NVARCHAR(50), -- 'Voice', 'Panic Phrase'
-    Location NVARCHAR(100) NULL,
-    AlertSent BIT
-);
-Security Considerations
-Voice data is processed locally to avoid exposing sensitive recordings.
+---
 
-App uses fake UI routing and safe dummy balance in frontend when in Safe Mode.
+## 🎯 Why This Project Stands Out
 
-API endpoints return fake data when IsInSafeMode = 1.
+- **Real-world problem solving**: Addresses safety in financial technology
+- **End-to-end thinking**: Full-stack design with security, UX, and AI
+- **Scalable architecture**: Modular Angular components, secure .NET API
+- **User-first design**: Focus on usability, accessibility, and privacy
 
-Safe mode cannot be disabled without full re-authentication and device check.
+---
 
-Future Enhancements
-Facial expression analysis for fear detection.
+## 📸 Screenshots & Demos *(Coming Soon)*
 
-Geo-fencing Safe Mode triggers in high-risk zones.
+> 🎥 Demo walkthrough and screenshots of the wallet UI and Safe Mode in action.
 
-Smart Emergency Alerts with GPS and voice message snippet.
+---
 
-Integration with SAPS/Neighborhood Watch if approved legally.
 
-Status
- Feature Concept Finalized
+## 🚀 Project Status
 
- Database Model Integrated
+- ✅ Backend APIs completed and secured (ASP.NET Core)
+- ✅ Angular 19 UI development underway (modular, responsive components)
+- 🔄 Voice recognition model integration in progress (using Vosk / TensorFlow.js)
+- 🔜 Mobile responsiveness testing and optimization (Bootstrap 5)
+- 🔜 Demo video recording and live deployment planned
 
- Basic Safe Mode UI Prototype Built
+---
 
- Voice Detection Setup
+## 🤝 Want to Connect or Collaborate?
 
- Alert Logic Configured
+I'm open to:
+- Collaborations with other developers
 
-Impress Recruiters With This
-This is a real-world, problem-solving feature that addresses:
 
-Crime in financial services
+Feel free to fork the repo, open an issue, or send a message.
 
-Voice and AI security innovation
+---
 
-Modern UX under threat
-
-Ethical FinTech design
-
-You Can Say On LinkedIn:
-"In episode 5 of my #SmartPay series, I tackled a major concern for everyday people in SA: what happens if someone forces you to open your wallet app?
-So I built a Voice-Activated Safe Mode. It listens for a secret panic phrase — and if I’m in danger, SmartPay hides my real balance, blocks transfers, and protects my life.
-#Innovation #FinTech #DigitalWallet #SecurityByDesign"
-
-Here’s What’s Already Possible Today (with your tech stack):
-
-Feature	Can You Do It?	How?
-Voice recognition	Yes	Use Vosk, TensorFlow.js, or ML.NET (free, works offline, no big data needed).
-Panic phrase detection	Yes	Store a custom panic phrase in the DB and match the user’s voice input against it.
-Fake UI in Safe Mode	Yes	Show a fake wallet balance and hide transfer buttons when isSafeMode == true.
-Trigger Safe Mode on voice	Yes	Capture voice → detect trigger → flag account as IsInSafeMode = true.
-Send silent alerts	Yes	Use backend C# service to email/SMS trusted contact without visible popup.
-Switch back to real mode after re-authentication	Yes	Log out → log in again → verify using PIN or biometric → reset IsInSafeMode = false.
